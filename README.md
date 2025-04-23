@@ -52,12 +52,50 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 ## STM 32 CUBE PROGRAM :
 
+```
+#include "main.h"
+#include "stdbool.h"
+bool button;
+void led_blink();
 
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+    while (1)
+  {
+    led_blink();
+     }
+  }
+void led_blink()
+{
+	button=HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
+		  if(button==0)
+		  {
+			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+			  HAL_Delay(1000);
+			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+			  HAL_Delay(1000);
+		  }
+		  else
+		  {
+			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+			  HAL_Delay(1000);
+		  }
+}
+```
 
 ## Output  :
- 
+
+![image](https://github.com/user-attachments/assets/776a021d-05a5-4e14-8176-705dcd944f79)
+
 ## layout of the circuit 
- 
+
+![image](https://github.com/user-attachments/assets/2ee27ba9-fb53-42af-b2f2-ad495baa3de1)
+
  
 ## Result :
 Interfacing a digital Input (Pushbutton ) with ARM microcontroller based IOT development is executed and the results are verified.
